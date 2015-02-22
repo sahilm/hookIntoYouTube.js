@@ -1,0 +1,25 @@
+{
+  "name": "hookIntoYouTube.js",
+  "version": "0.1.0",
+  "description": "Provides timed hooks into YouTube",
+  "main": "hookIntoYouTube.js",
+  "author": "Sahil Muthoo <sahil.muthoo@gmail.com> (https://sahilm.com)",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://raw.github.com/sahilm/hookIntoYouTube.js/master/LICENSE"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sahilm/hookIntoYouTube.js.git"
+  },
+  "devDependencies": {
+    "jshint": "*",
+    "uglify-js": "*"
+  },
+  "scripts": {
+    "test": "jshint hookIntoYouTube.js",
+    "minify": "uglifyjs hookIntoYouTube.js --compress --lint --screw-ie8 --comments --output hookIntoYouTube.min.js"
+  }
+}

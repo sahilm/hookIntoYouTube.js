@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Hook into YouTube</title>
+  </head>
+  <link href='https://fonts.googleapis.com/css?family=Oswald:700|Quattrocento' rel='stylesheet' type='text/css'>
+  <link href="index.css" rel="stylesheet" type="text/css">
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script> <!-- Only needed for the example. This allows the example to be served from the local filesystem -->
+  <script src="../hookIntoYouTube.min.js"></script>
+</html>
+<body>
+  <section>
+    <h1>Hook into YouTube</h1>
+    <iframe id="player" type="text/html"
+            width="640"
+            height="390"
+            src="https://www.youtube.com/embed/OF--50_hcTU?enablejsapi=1"
+            frameborder="0">
+    </iframe>
+
+    <aside>
+      <p>
+        Wait for things to happen. First hook at 5 seconds.
+      </p>
+
+      <p id="at-5-seconds">
+        Video paused. Resume the video to continue.
+      </p>
+
+      <p id="at-10-seconds">
+        We're now at 10 seconds. Changing video @ 35 seconds mark.
+      </p>
+
+    </aside>
+  </section>
+
+
+  <script>
+    (function () {
+      var hooks = {
+        atSeconds: [5, 10, 35],
+        hook: function (time, player) {
+          if (time === 5) {
+            $('#at-5-seconds').show();
+            player.pauseVideo();
+          }
+          if (time === 10) {
+            $('#at-10-seconds').show();
+          }
+          if (time === 35) {
+            player.stopVideo();
+            player.loadVideoById('fl8G2UKgXeQ', 0, "large");
+            player.playVideo();
+          }
+        }
+      };
+      ytHook.into('player', hooks, true);
+    })();
+  </script>
+</body>
